@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include("partials/head.ejs"); %>
+  <%- include("partials/head.ejs"); %>
 
-<body>
-    <h1>Edit Your Stuff</h1>
-</body>
+  <body>
+    <h1>Here's This Thing</h1>
 
-<%- include("partials/footer.ejs"); %>
+    <ul class="itemListing">
+      Item Name: <%= item.itemName.id %> Purchase Price: <%= item.purchasePrice
+      %> Is It Broken? <%= item.broken ? "Yes" : "No" %> Is It the Wrong Size?
+      <%= item.wrongSize ? "Yes" : "No" %> What Year Was It Last Used?
+      <a href="/edit/<%= item.yearLastUsed %>"></a>
+      Tags: <%= item.tags.join(", ") %> Notes: <%= item.itemNotes %>
+    </ul>
+
+    <button type="submit">
+      <a href="/edit/<%= item %>">Click Here to Edit</a>
+    </button>
+  </body>
+
+  <%- include("partials/footer.ejs"); %>
 </html>

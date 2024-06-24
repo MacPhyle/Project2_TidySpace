@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs"); %>
+
+  <body>
+    <h1>Welcome to Your Tidy Space!</h1>
+    <h2>Using this app, you can add, view, and edit your stuff.</h2>
+    <p>
+      Whether you intend to declutter or just keep track of your stuff, Tidy
+      Space will help you out.
+    </p>
+    <br />
+    <h2>Log in, or set up a Username and Password so you can save your stuff:</h2>
+    <br />
+    <form>
+      <input
+        type="text"
+        name="userName"
+        placeholder="Choose Your Username"
+        size="40"
+      />
+      <br />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password: 8+ alphanumeric characters with symbols"
+        size="40"
+        min="8"
+      />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <br />
+    <br />
+    <button onclick="window.location.href='/new'">
+      Click here to go add some stuff!
+    </button>
+    <p class="quote">
+      “The ability to simplify means to eliminate the unnecessary so that the
+      necessary may speak.”
+    </p>
+    <p class="credit">- artist Hans Hofmann</p>
+    <br />
+    <br />
+  </body>
+
+  <%- include("partials/footer.ejs"); %>
+</html>

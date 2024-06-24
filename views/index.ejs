@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include("partials/head.ejs"); %>
+  <%- include("partials/head.ejs"); %>
 
-<body>
+  <body>
     <h1>Stuff Library</h1>
-</body>
+    <table>
+      <tr>
+        <th>Item Name</th>
+        <th>Purchase Price</th>
+        <th>Broken?</th>
+        <th>Wrong Size?</th>
+        <th>Year Last Used</th>
+        <th>Tags</th>
+        <th>Notes</th>
+        <th>Actions</th>
+      </tr>
 
-<%- include("partials/footer.ejs"); %>
+      <% items.forEach(function(item) { %>
+      <tr>
+        <td><%= item.itemName %></td>
+        <td><%= item.purchasePrice %></td>
+        <td><%= item.broken ? "Yes" : "No" %></td>
+        <td><%= item.wrongSize ? "Yes" : "No" %></td>
+        <td><%= item.yearLastUsed %></td>
+        <td><%= item.tags.join(", ") %></td>
+        <td><%= item.itemNotes %></td>
+        <td>
+          <a href="/stuff/_id/edit">Edit</a>
+          <form action="/stuff/<%= item._id %>?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </table>
+  </body>
+
+  <%- include("partials/footer.ejs"); %>
 </html>
