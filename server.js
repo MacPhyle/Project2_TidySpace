@@ -133,7 +133,6 @@ app.get("/stuff/:id/edit", async (req, res) => {
     
     // const item = await Items.findById(new mongoose.Types.ObjectId(id));
     const item = await Items.findById(id);
-    console.log(`Found item: ${item}`);
 
     if (!item) {
       return res.status(404).send("Item not found");

@@ -26,6 +26,7 @@
         <td><%= item.tags.join(", ") %></td>
         <td><%= item.itemNotes %></td>
         <td>
+          <a href="/stuff/<%= item._id %>">View</a>
           <a href="/stuff/<%= item._id %>/edit">Edit</a>
           <form action="/stuff/<%= item._id %>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>

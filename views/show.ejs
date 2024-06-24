@@ -6,11 +6,22 @@
     <h1>Here's This Thing</h1>
 
     <ul class="itemListing">
-      Item Name: <%= item.itemName.id %> Purchase Price: <%= item.purchasePrice
-      %> Is It Broken? <%= item.broken ? "Yes" : "No" %> Is It the Wrong Size?
-      <%= item.wrongSize ? "Yes" : "No" %> What Year Was It Last Used?
-      <a href="/edit/<%= item.yearLastUsed %>"></a>
-      Tags: <%= item.tags.join(", ") %> Notes: <%= item.itemNotes %>
+      Item Name: <%= item.itemName.id %>
+      <br>
+      Purchase Price: <%= item.purchasePrice
+      %>
+      <br>
+      Is It Broken? <%= item.broken ? "Yes" : "No" %>
+      <br>
+      Is It the Wrong Size?
+      <%= item.wrongSize ? "Yes" : "No" %>
+      <br>
+      What Year Was It Last Used?
+      <%= item.yearLastUsed %>
+      <br>
+      Tags: <%= item.tags.join(", ") %>
+      <br>
+      Notes: <%= item.itemNotes %>
     </ul>
 
     <button type="submit">
