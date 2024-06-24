@@ -10,6 +10,10 @@ const Items = require("./models/itemSchema");
 
 const mongoURI = "mongodb://localhost:27017/stuff";
 
+const isValidObjectId = (id) => {
+  return mongoose.Types.ObjectId.isValid(id);
+};
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -70,10 +74,10 @@ app.delete("/stuff/:id", async (req, res) => {
 
 //UPDATE
 app.put("/stuff/:id", async (req, res) => {
-  if (req.body.isBroken === "on") {
-    req.body.isBroken = true;
+  if (req.body.broken === "on") {
+    req.body.broken = true;
   } else {
-    req.body.isBroken = false;
+    req.body.broken = false;
   }
   if (req.body.wrongSize === "on") {
     req.body.wrongSize = true;
@@ -82,16 +86,13 @@ app.put("/stuff/:id", async (req, res) => {
   }
 
   try {
-    const item = await Items.findById(req.params.id, req.body, {
-      new: true,
+    await Items.findByIdAndUpdate(req.params.id, req.body, {
     });
     res.redirect("/stuff");
   } catch (err) {
     console.error(err);
     res.status(500).send("Internal Server Error");
   }
-
-  res.send(req.body);
 });
 
 //CREATE
@@ -120,7 +121,24 @@ app.post("/stuff/new", async (req, res) => {
 app.get("/stuff/:id/edit", async (req, res) => {
   console.log("req.params.id", req.params.id);
   try {
-    const item = await Items.findById(req.params.id);
+    const id = req.params.id;
+    console.log(`Received ID: ${id}`);
+
+    const isValid = mongoose.Types.ObjectId.isValid(id);
+    console.log(`Is ID Valid? ${isValid}`);
+
+    if (!isValid) {
+      return res.status(400).send("Invalid item ID");
+    }
+    
+    // const item = await Items.findById(new mongoose.Types.ObjectId(id));
+    const item = await Items.findById(id);
+    console.log(`Found item: ${item}`);
+
+    if (!item) {
+      return res.status(404).send("Item not found");
+    }
+    
     res.render("edit.ejs", { item });
   } catch (err) {
     console.error(err);
@@ -131,7 +149,14 @@ app.get("/stuff/:id/edit", async (req, res) => {
 //SHOW
 app.get("/stuff/:id", async (req, res) => {
   try {
-    const item = await Items.findById(req.params.id);
+    const id = req.params.id;
+    if (!isValidObjectId(id)) {
+      return res.status(404).send("Invalid item ID");
+    }
+    const item = await Items.findById(new mongoose.Types.ObjectId(id));
+    if (!item) {
+      return res.status(404).send("Item not found");
+    }
     res.render("show.ejs", { item });
   } catch (err) {
     console.error(err);

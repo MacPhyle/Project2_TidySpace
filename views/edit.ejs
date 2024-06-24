@@ -5,32 +5,55 @@
   <body>
     <h1>Edit This Item</h1>
 
-    <table>
-      <tr>
-        <th>Item Name</th>
-        <th>Purchase Price</th>
-        <th>Year Last Used</th>
-        <th>Broken?</th>
-        <th>Wrong Size?</th>
-        <th>Tags</th>
-        <th>Notes</th>
-      </tr>
+    <form action="/stuff/<%= item._id %>?_method=PUT" method="POST">
+      <label for="itemName">Item Name:</label>
+      <input
+        type="text"
+        id="itemName"
+        name="itemName"
+        value="<%= item.itemName %>"
+        required
+      />
 
-      <tr>
-        <td><%- item.itemName %>/delete</td>
-        <td><a href="/stuff/<%= item.itemName %>/delete">Edit</a></td>
-        <td><%- item.purchasePrice %>/delete</td>
-        <td><a href="/stuff/<%= item.purchasePrice %>/delete">Edit</a></td>
-        <td><%- item.broken ? "Yes" : "No" %></td>
-        <td><%- item.wrongSize ? "Yes" : "No" %></td>
-        <td><a href="/stuff/<%= item.yearLastUsed %>/delete">Edit</a></td>
-        <td><%- item.tags.join(", ") %>/delete</td>
-        <td><a href="/stuff/<%= item.tags %>/delete">Edit</a></td>
-        <td><%- item.itemNotes %>/delete</td>
-        <td><a href="/stuff/<%= item.itemNotes %>/delete">Edit</a></td>
-        <button type="submit">Update This Item</button>
-      </tr>
-    </table>
+      <label for="purchasePrice">Purchase Price:</label>
+      <input
+        type="number"
+        id="purchasePrice"
+        name="purchasePrice"
+        value="<%= item.purchasePrice %>"
+        required
+      />
+
+      <label for="itemNotes">Item Notes:</label>
+      <textarea id="itemNotes" name="itemNotes"><%= item.itemNotes %></textarea>
+
+      <label for="broken">Broken:</label>
+      <input type="checkbox" id="broken" name="broken" <%= item.broken ?
+      'checked' : '' %>>
+
+      <label for="wrongSize">Wrong Size:</label>
+      <input type="checkbox" id="wrongSize" name="wrongSize" <%= item.wrongSize
+      ? 'checked' : '' %>>
+
+      <label for="yearLastUsed">Year Last Used:</label>
+      <input
+        type="number"
+        id="yearLastUsed"
+        name="yearLastUsed"
+        value="<%= item.yearLastUsed %>"
+        required
+      />
+
+      <label for="tags">Tags:</label>
+      <input
+        type="text"
+        id="tags"
+        name="tags"
+        value="<%= item.tags.join(', ') %>"
+      />
+
+      <button type="submit">Update Item</button>
+    </form>
   </body>
 
   <%- include("partials/footer.ejs"); %>/delete

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs"); %>/delete
+
+  <body>
+    <h1>Edit This Item</h1>
+
+    <table>
+      <tr>
+        <th>Item Name</th>
+        <th>Purchase Price</th>
+        <th>Year Last Used</th>
+        <th>Broken?</th>
+        <th>Wrong Size?</th>
+        <th>Tags</th>
+        <th>Notes</th>
+      </tr>
+
+      <tr>
+        <td><%- item.itemName %>/delete</td>
+        <td><a href="/stuff/<%= item.itemName %>/delete">Edit</a></td>
+        <td><%- item.purchasePrice %>/delete</td>
+        <td><a href="/stuff/<%= item.purchasePrice %>/delete">Edit</a></td>
+        <td><%- item.broken ? "Yes" : "No" %></td>
+        <td><%- item.wrongSize ? "Yes" : "No" %></td>
+        <td><a href="/stuff/<%= item.yearLastUsed %>/delete">Edit</a></td>
+        <td><%- item.tags.join(", ") %>/delete</td>
+        <td><a href="/stuff/<%= item.tags %>/delete">Edit</a></td>
+        <td><%- item.itemNotes %>/delete</td>
+        <td><a href="/stuff/<%= item.itemNotes %>/delete">Edit</a></td>
+        <button type="submit">Update This Item</button>
+      </tr>
+    </table>
+  </body>
+
+  <%- include("partials/footer.ejs"); %>/delete
+</html>
