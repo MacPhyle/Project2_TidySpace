@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs"); %>
+
+  <body>
+    <h1>Listing All the Tags</h1>
+
+    <p>Debug: Number of tags: <%= tags.length %></p>
+
+    <ul>
+      <% tags.forEach(function(tag) { %>
+      <li>
+        <a href="/tags/<%= encodeURIComponent(tag) %>"><%= tag %></a>
+      </li>
+      <% }); %>
+    </ul>
+
+  </body>
+
+  <%- include("partials/footer.ejs"); %>
+</html>

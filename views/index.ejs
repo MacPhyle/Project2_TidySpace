@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("partials/head.ejs"); %>
+<%- include("partials/head.ejs"); %>
 
-  <body>
-    <h1>Stuff Library</h1>
-    <table>
-      <tr>
-        <th>Item Name</th>
-        <th>Purchase Price</th>
-        <th>Broken?</th>
-        <th>Wrong Size?</th>
-        <th>Year Last Used</th>
-        <th>Tags</th>
-        <th>Notes</th>
-        <th>Actions</th>
-      </tr>
+<body>
+  <h1>Stuff Library</h1>
+  <table>
+    <tr>
+      <th>Item Name</th>
+      <th>Purchase Price</th>
+      <th>Broken?</th>
+      <th>Wrong Size?</th>
+      <th>Year Last Used</th>
+      <th><a href="/tags">Tags</a></th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
 
-      <% items.forEach(function(item) { %>
-      <tr>
-        <td><%= item.itemName %></td>
-        <td><%= item.purchasePrice %></td>
-        <td><%= item.broken ? "Yes" : "No" %></td>
-        <td><%= item.wrongSize ? "Yes" : "No" %></td>
-        <td><%= item.yearLastUsed %></td>
-        <td><%= item.tags.join(", ") %></td>
-        <td><%= item.itemNotes %></td>
-        <td>
-          <a href="/stuff/<%= item._id %>">View</a>
-          <a href="/stuff/<%= item._id %>/edit">Edit</a>
-          <form action="/stuff/<%= item._id %>?_method=DELETE" method="POST">
-            <button type="submit">Delete</button>
-          </form>
-        </td>
-      </tr>
-      <% }); %>
-    </table>
-  </body>
+    <% items.forEach(function(item) { %>
+    <tr>
+      <td><%= item.itemName %></td>
+      <td><%= item.purchasePrice %></td>
+      <td><%= item.broken ? "Yes" : "No" %></td>
+      <td><%= item.wrongSize ? "Yes" : "No" %></td>
+      <td><%= item.yearLastUsed %></td>
+      <td><%= item.tags.join(", ") %></td>
+      <td><%= item.itemNotes %></td>
+      <td>
+        <a href="/stuff/<%= item._id %>">View</a>
+        <a href="/stuff/<%= item._id %>/edit">Edit</a>
+        <form action="/stuff/<%= item._id %>?_method=DELETE" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+  <button onclick="window.location.href='/new'">Add more stuff!</button>
+</body>
 
-  <%- include("partials/footer.ejs"); %>
+<%- include("partials/footer.ejs"); %>
+
 </html>

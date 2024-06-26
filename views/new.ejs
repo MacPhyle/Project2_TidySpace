@@ -1,56 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("partials/head.ejs"); %>
+<%- include("partials/head.ejs"); %>
 
-  <body>
-    <h1>Add Some Stuff</h1>
+<body>
+  <h1>Add Some Stuff</h1>
 
-    <form action="/stuff/new" method="POST">
-      <label for="itemName">Item Name</label>
-      <input type="text" name="itemName" size="35" />
-      <br />
-      <br />
-      <label for="purchasePrice">Purchase Price</label>
-      <input type="number" name="purchasePrice" />
-      <br />
-      <br />
-      <label for="itemNotes">Item Notes</label>
-      <textarea name="itemNotes"></textarea>
-      <br />
-      <br />
-      <label for="broken">Check this box if it's broken:</label>
-      <input type="checkbox" name="broken" />
-      <br />
-      <br />
-      <label for="wrongSize">Check this box if it's the wrong size:</label>
-      <input type="checkbox" name="wrongSize" />
-      <br />
-      <br />
-      <label for="yearLastUsed">What year did you last use it?</label>
-      <input
-        type="number"
-        name="yearLastUsed"
-        min="1900"
-        max="2199"
-        pattern="\d{4}"
-        placeholder="YYYY"
-      />
-      <br />
-      <br />
-      <label for="tags">Tags</label>
-      <input
-        onkeyup="parse();"
-        type="text"
-        name="tags"
-        placeholder="comma-separated tags"
-        maxlength="100"
-        class="form-control"
-      />
-      <br />
-      <br />
-      <button type="submit">Create Item</button>
-    </form>
-  </body>
+  <form action="/stuff/new" method="POST">
+    <label for="itemName">Item Name</label>
+    <input type="text" name="itemName" size="35" />
+    <br />
+    <br />
+    <label for="purchasePrice">Purchase Price</label>
+    <input type="number" name="purchasePrice" />
+    <br />
+    <br />
+    <label for="itemNotes">Item Notes</label>
+    <textarea name="itemNotes"></textarea>
+    <br />
+    <br />
+    <label for="broken">Check this box if it's broken:</label>
+    <input type="checkbox" name="broken" />
+    <br />
+    <br />
+    <label for="wrongSize">Check this box if it's the wrong size:</label>
+    <input type="checkbox" name="wrongSize" />
+    <br />
+    <br />
+    <label for="yearLastUsed">What year did you last use it?</label>
+    <input type="number" name="yearLastUsed" min="1900" max="2199" pattern="\d{4}" placeholder="YYYY" />
+    <br />
+    <br />
+    <label for="tags">Tags</label>
+    <input onkeyup="parse();" type="text" name="tags" placeholder="comma-separated tags" maxlength="100" class="form-control" />
+    <br />
+    <br />
+    <button type="submit">Create Item</button>
+  </form>
+</body>
 
-  <%- include("partials/footer.ejs"); %>
+<%- include("partials/footer.ejs"); %>
+
 </html>

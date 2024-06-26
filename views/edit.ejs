@@ -1,60 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("partials/head.ejs"); %>/delete
+<%- include("partials/head.ejs"); %>
 
-  <body>
-    <h1>Edit This Item</h1>
+<body>
+  <h1>Edit This Item</h1>
 
-    <form action="/stuff/<%= item._id %>?_method=PUT" method="POST">
-      <label for="itemName">Item Name:</label>
-      <input
-        type="text"
-        id="itemName"
-        name="itemName"
-        value="<%= item.itemName %>"
-        required
-      />
+  <form action="/stuff/<%= item._id %>?_method=PUT" method="POST">
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" value="<%= item.itemName %>" required />
 
-      <label for="purchasePrice">Purchase Price:</label>
-      <input
-        type="number"
-        id="purchasePrice"
-        name="purchasePrice"
-        value="<%= item.purchasePrice %>"
-        required
-      />
+    <label for="purchasePrice">Purchase Price:</label>
+    <input type="number" id="purchasePrice" name="purchasePrice" value="<%= item.purchasePrice %>" required />
 
-      <label for="itemNotes">Item Notes:</label>
-      <textarea id="itemNotes" name="itemNotes"><%= item.itemNotes %></textarea>
+    <label for="itemNotes">Item Notes:</label>
+    <textarea id="itemNotes" name="itemNotes"><%= item.itemNotes %></textarea>
 
-      <label for="broken">Broken:</label>
-      <input type="checkbox" id="broken" name="broken" <%= item.broken ?
+    <label for="broken">Broken:</label>
+    <input type="checkbox" id="broken" name="broken" <%= item.broken ?
       'checked' : '' %>>
 
-      <label for="wrongSize">Wrong Size:</label>
-      <input type="checkbox" id="wrongSize" name="wrongSize" <%= item.wrongSize
+    <label for="wrongSize">Wrong Size:</label>
+    <input type="checkbox" id="wrongSize" name="wrongSize" <%= item.wrongSize
       ? 'checked' : '' %>>
 
-      <label for="yearLastUsed">Year Last Used:</label>
-      <input
-        type="number"
-        id="yearLastUsed"
-        name="yearLastUsed"
-        value="<%= item.yearLastUsed %>"
-        required
-      />
+    <label for="yearLastUsed">Year Last Used:</label>
+    <input type="number" id="yearLastUsed" name="yearLastUsed" value="<%= item.yearLastUsed %>" required />
 
-      <label for="tags">Tags:</label>
-      <input
-        type="text"
-        id="tags"
-        name="tags"
-        value="<%= item.tags.join(', ') %>"
-      />
+    <label for="tags">Tags:</label>
+    <input type="text" id="tags" name="tags" value="<%= item.tags.join(', ') %>" />
 
-      <button type="submit">Update Item</button>
-    </form>
-  </body>
+    <button type="submit">Update Item</button>
+  </form>
 
-  <%- include("partials/footer.ejs"); %>/delete
+  <button onclick="window.location.href='/new'">
+    Add more stuff!
+  </button>
+</body>
+
+<%- include("partials/footer.ejs"); %>
+
 </html>

@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("partials/head.ejs"); %>
+<%- include("partials/head.ejs"); %>
 
-  <body>
-    <h1>Here's This Thing</h1>
+<body>
+  <h1>Here's This Thing</h1>
 
-    <ul class="itemListing">
-      Item Name: <%= item.itemName.id %>
-      <br>
-      Purchase Price: <%= item.purchasePrice
-      %>
-      <br>
-      Is It Broken? <%= item.broken ? "Yes" : "No" %>
-      <br>
-      Is It the Wrong Size?
-      <%= item.wrongSize ? "Yes" : "No" %>
-      <br>
-      What Year Was It Last Used?
-      <%= item.yearLastUsed %>
-      <br>
-      Tags: <%= item.tags.join(", ") %>
-      <br>
-      Notes: <%= item.itemNotes %>
-    </ul>
+  <ul class="itemListing">
+    Item Name: <%= item.itemName %>
+    <br />
+    Purchase Price: <%= item.purchasePrice %>
+    <br />
+    Is It Broken? <%= item.broken ? "Yes" : "No" %>
+    <br />
+    Is It the Wrong Size? <%= item.wrongSize ? "Yes" : "No" %>
+    <br />
+    What Year Was It Last Used? <%= item.yearLastUsed %>
+    <br />
+    Tags: <%= item.tags.join(", ") %>
+    <br />
+    Notes: <%= item.itemNotes %>
+  </ul>
 
-    <button type="submit">
-      <a href="/edit/<%= item %>">Click Here to Edit</a>
-    </button>
-  </body>
+  <button type="submit">
+    <a href="/stuff/<%= item._id %>/edit">Click Here to Edit</a>
+  </button>
+  <button onclick="window.location.href='/new'">Add more stuff!</button>
+</body>
 
-  <%- include("partials/footer.ejs"); %>
+<%- include("partials/footer.ejs"); %>
+
 </html>
