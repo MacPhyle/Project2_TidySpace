@@ -1,43 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("partials/head.ejs"); %>
+  <%- include("partials/head.ejs"); %>
 
-<body>
-  <h1>Add Some Stuff</h1>
+  <body>
+    <div class="container">
+      <h1>Add Some Stuff</h1>
 
-  <form action="/stuff/new" method="POST">
-    <label for="itemName">Item Name</label>
-    <input type="text" name="itemName" size="35" />
-    <br />
-    <br />
-    <label for="purchasePrice">Purchase Price</label>
-    <input type="number" name="purchasePrice" />
-    <br />
-    <br />
-    <label for="itemNotes">Item Notes</label>
-    <textarea name="itemNotes"></textarea>
-    <br />
-    <br />
-    <label for="broken">Check this box if it's broken:</label>
-    <input type="checkbox" name="broken" />
-    <br />
-    <br />
-    <label for="wrongSize">Check this box if it's the wrong size:</label>
-    <input type="checkbox" name="wrongSize" />
-    <br />
-    <br />
-    <label for="yearLastUsed">What year did you last use it?</label>
-    <input type="number" name="yearLastUsed" min="1900" max="2199" pattern="\d{4}" placeholder="YYYY" />
-    <br />
-    <br />
-    <label for="tags">Tags</label>
-    <input onkeyup="parse();" type="text" name="tags" placeholder="comma-separated tags" maxlength="100" class="form-control" />
-    <br />
-    <br />
-    <button type="submit">Create Item</button>
-  </form>
-</body>
+      <form action="/stuff/new" method="POST">
+        <div class="form-group" class="d-flex">
+          <label for="itemName">Item Name</label>
+          <input type="text" name="itemName" size="35" />
+        </div>
+        <br />
+        <br />
+        <div class="form-group" class="d-flex">
+          <label for="purchasePrice">Purchase Price</label>
+          <input type="number" name="purchasePrice" />
+        </div>
+        <br />
+        <br />
+        <div class="form-group" class="d-flex">
+          <label for="itemNotes">Item Notes</label>
+          <textarea name="itemNotes"></textarea>
+        </div>
+        <br />
+        <br />
+        <div class="checkbox" class="d-flex">
+          <label for="broken">Check here if it's broken:</label>
+          <input type="checkbox" name="broken" />
+        </div>
+        <br />
+        <br />
+        <div class="checkbox" class="d-flex">
+          <label for="wrongSize">Check here if it's the wrong size:</label>
+          <input type="checkbox" name="wrongSize" />
+        </div>
+        <br />
+        <br />
+        <div class="form-group" class="d-flex">
+          <label for="yearLastUsed">What year did you last use it?</label>
+          <input
+            type="number"
+            name="yearLastUsed"
+            min="1900"
+            max="2199"
+            pattern="\d{4}"
+            placeholder="YYYY"
+          />
+        </div>
+        <br />
+        <br />
+        <div class="form-group" class="d-flex">
+          <label for="tags">Tags</label>
+          <input
+            onkeyup="parse();"
+            type="text"
+            name="tags"
+            placeholder="comma-separated tags"
+            maxlength="100"
+            class="form-control"
+          />
+        </div>
+        <br />
+        <br />
+        <div>
+          <button type="submit" class="btn btn-info">Create Item</button>
+        </div>
+      </form>
+    </div>
 
-<%- include("partials/footer.ejs"); %>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 
+  <%- include("partials/footer.ejs"); %>
 </html>

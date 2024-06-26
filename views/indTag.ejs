@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("partials/head.ejs"); %>
+  <%- include("partials/head.ejs"); %>
 
-<body>
-  <h1>Items with This Tag: <%= tag %></h1>
+  <body>
+    <h1>Items with This Tag: <%= tag %></h1>
 
-  <% if (items && items.length > 0) { %>
-  <ul class="itemListing">
-    <% items.forEach(item => { %>
-    <li><%= item.itemName %></li>
-    <% }) %>
-  </ul>
-  <% } else { %>
-  <p>no items with this tag</p>
-  <% } %>
+    <% if (items && items.length > 0) { %>
+    <ul class="">
+      <% items.forEach(item => { %>
+      <li><%= item.itemName %></li>
+      <% }) %>
+    </ul>
+    <% } else { %>
+    <p>No items with this tag were found.</p>
+    <% } %>
 
-  <button onclick="window.location.href='/new'">Add more stuff!</button>
-</body>
+    <button class="btn btn-info" onclick="window.location.href='/new'">Add more stuff!</button>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 
-<%- include("partials/footer.ejs"); %>
-
+  <%- include("partials/footer.ejs"); %>
 </html>

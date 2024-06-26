@@ -14,8 +14,6 @@ const isValidObjectId = (id) => {
   return mongoose.Types.ObjectId.isValid(id);
 };
 
-// app.set("view engine", "ejs");
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -30,12 +28,6 @@ async function connectToMongo() {
 }
 
 connectToMongo();
-
-// A list of routes
-// individualItem - for viewing a certain item and all its info - tags, notes, purchase price
-// tags - for viewing a list of the tags. The page includes edit and delete buttons for editing
-// and deleting the tags. individualTag - for viewing a list of items that have a certain tag.
-// There are edit and delete buttons for editing and deleting tags.
 
 //INDUCES
 
@@ -80,7 +72,6 @@ try {
       .split(",")
       .map(tag => tag.trim())
       .filter(tag => tag !== "")
-      // req.body.tags = [...new Set(req.body.tags)];
   }
   const newItem = await Items.create(req.body);
   res.redirect("/stuff");
@@ -108,8 +99,6 @@ app.get("/tags", async (req, res) => {
     const cleanedTags = allTags
     .map(tag => tag.trim())
     .filter(tag => tag !== "");
-
-    console.log(`All cleaned tags: ${cleanedTags}`);
 
     res.render("tags.ejs", { tags: cleanedTags });
   } catch (err) {
@@ -168,53 +157,18 @@ app.get("/stuff/:id/edit", async (req, res) => {
   }
 });
 
-//SHOW
-// app.get("/stuff/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     if (!isValidObjectId(id)) {
-//       return res.status(404).send("Invalid item ID");
-//     }
-//     const item = await Items.findById(new mongoose.Types.ObjectId(id));
-//     if (!item) {
-//       return res.status(404).send("Item not found");
-//     }
-//     res.render("show.ejs", { item });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Internal Server Error");
-// //   }
-// });
-
 app.get("/tags/:tag", async (req, res) => {
   try {
     const tag = req.params.tag;
-    console.log(`Serching for tag: ${tag}`);
 
     const items = await Items.find({ tags: { $regex: new RegExp(tag, "i") } });
 
-    console.log("Query:", { tags: { $regex: new RegExp(tag, "i") } });
-    console.log(`Found ${items.length} items for tag: ${tag}`);
-    console.log(`Items: ${items}`);
-    // if (items.length === 0) return res.status(404).render();
     res.render("indTag.ejs", { items, tag });
   } catch (err) {
     console.error("Error in /tags/:tag route:", err);
     res.status(500).send("Internal Server Error");
   }
 });
-
-// app.get("/indTag", async (req, res) => {
-//   try {
-//     const tag = req.query.tag;
-//     const items = await Items.find({ tags: tag });
-//     res.render("indTag.ejs", { items: items, tag: tag });
-//     console.log(req.query.tag);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
 
 app.get("/stuff/:id", async (req, res) => {
   try {
