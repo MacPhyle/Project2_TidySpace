@@ -1,14 +1,16 @@
+require("dotenv").config()
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
-const port = 3002;
+const port = process.env.PORT || 3002;
 
 const Items = require("./models/itemSchema");
 
-const mongoURI = "mongodb://localhost:27017/stuff";
+// const mongoURI = "mongodb://localhost:27017/stuff";
+const mongoURI = process.env.MONGO_URI;
 
 const isValidObjectId = (id) => {
   return mongoose.Types.ObjectId.isValid(id);
@@ -188,5 +190,5 @@ app.get("/stuff/:id", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`);
+  console.log(`Listening at ${port}`);
 });
